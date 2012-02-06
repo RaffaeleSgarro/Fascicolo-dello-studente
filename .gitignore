@@ -1,2 +1,13 @@
+# Exclude bytecode cache and similar files
 tmp/
+
+# Exclude Eclipse files:
+# this contains absolute pathnames
+.classpath
+# this contains the project description
+.project
+# preferences are stored in this folder
+.settings/
+# contains launchers
+eclipse/
 
