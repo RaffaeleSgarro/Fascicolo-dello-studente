@@ -1,5 +1,10 @@
 # Exclude bytecode cache and similar files
 tmp/
+modules/
+lib/
+test-result/
+logs/
+db/
 
 # Exclude Eclipse files:
 # this contains absolute pathnames
