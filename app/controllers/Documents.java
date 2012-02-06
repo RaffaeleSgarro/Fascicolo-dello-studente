@@ -8,7 +8,9 @@ public class Documents extends Controller {
 		render();
 	}
 	
-	public static void create() {}
+	public static void create() {
+		render();
+	}
 	
 	public static void edit() {}
 	
