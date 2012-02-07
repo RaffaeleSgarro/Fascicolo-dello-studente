@@ -17,10 +17,10 @@
 #{list documents, as:'doc'}
   <tr class="${doc_parity}">
     <td><a href="${doc.url}">${doc.title}</a></td>
-	<td class="center">${doc.student_pin}</td>
+	<td class="center">#{a @Documents.findByStudentPin(doc.studentPin)}${doc.studentPin}#{/a}</td>
 	<td class="center">Timestamp</td>
     <td class="actions center">
-		#{a @Documents.edit(), class:"button"}Modifica#{/a}
+		#{a @Documents.form(doc.id), class:"button"}Modifica#{/a}
 		#{a @Documents.delete(doc.id), class:"button"}Cancella#{/a}
 	</td>
   </tr>
@@ -32,5 +32,5 @@
 <br />
 <div class="center">
 	<a href="@{Documents.index}" class="button">Tutti i documenti</a>
-	<a href="@{Documents.create}" class="button">Nuovo documento</a>
+	<a href="@{Documents.form(-1)}" class="button">Nuovo documento</a>
 </div>

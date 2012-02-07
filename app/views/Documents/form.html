@@ -1,22 +1,23 @@
-#{form @Documents.create(), class: "card"}
+#{extends 'main.html' /}
+
+#{form @Documents.save(), class: "card"}
+  <input type="hidden" name="document.id" value="${document?.id}" />
   <table>
   <tr class="field">
     <td class="right">URL<br />
-    <td><input type="text" name="url" />
+    <td><input type="text" name="document.url" value="${document?.url}" />
   </tr>
   <tr class="field">
     <td class="right">Titolo<br />
-    <td><input type="text" name="title" />
+    <td><input type="text" name="document.title" value="${document?.title}" />
   </tr>
   <tr class="field">
   	<td class="right">Studente (PIN)<br />
-  	<td><input type="text" name="student_pin" />
-  </tr>
-  <tr>
-    <td> </td>
-	<td class="right"><div class="field">
-    <input type="submit" class="button" />
-	</div></td>
+  	<td><input type="text" name="document.studentPin" value="${document?.studentPin}" />
   </tr>
   </table>
+  <div class="center">
+  	<a class="button" href="@{Documents.index()}">Indietro</a>
+  	<a class="button" href="javascript:$('form')[0].submit()">Invia</a>
+  </div>
 #{/form}
