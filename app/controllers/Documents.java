@@ -34,5 +34,10 @@ public class Documents extends Controller {
 	
 	public static void edit() {}
 	
-	public static void delete() {}
+	public static void delete(Long id) {
+		Document doc = Document.findById(id);
+		if (doc != null)
+			doc.delete();
+		redirect("Documents.index");
+	}
 }

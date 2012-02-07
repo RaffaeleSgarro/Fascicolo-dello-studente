@@ -21,7 +21,7 @@
 	<td class="center">Timestamp</td>
     <td class="actions center">
 		#{a @Documents.edit(), class:"button"}Modifica#{/a}
-		#{a @Documents.delete(), class:"button"}Cancella#{/a}
+		#{a @Documents.delete(doc.id), class:"button"}Cancella#{/a}
 	</td>
   </tr>
 #{/}
