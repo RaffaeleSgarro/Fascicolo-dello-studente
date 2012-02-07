@@ -1,6 +1,11 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
+#{if documents.size < 1}
+	<div class="card">Non ci sono documenti</div>
+#{/}
+
+#{else}
 <table>
   <tr>
     <th>Documento</th>
@@ -8,8 +13,9 @@
 	<th class="center">Creato</th>
     <th class="actions center">Azioni</th>
   </tr>
+#{/}
 
-<% @documents.each do |document| %>
+#{list documents}
   <tr class="<%= cycle('odd', 'even')%>">
     <td><%= link_to document.description, document.url %></td>
 	<td class="center"><%= link_to document.student, documents_path(student: document.student) %></td>
@@ -20,9 +26,11 @@
 		<%= link_to 'Destroy', document, confirm: 'Are you sure?', method: :delete, :class=>"button" %>
 	</td>
   </tr>
-<% end %>
-</table>
+#{/}
 
+#{if documents.size > 0}
+	</table>
+#{/}
 <br />
 <div class="center">
 	<a href="@{Documents.index}" class="button">Tutti i documenti</a>

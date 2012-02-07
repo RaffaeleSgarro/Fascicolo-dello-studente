@@ -1,6 +1,7 @@
 package models;
 
 import java.net.URL;
+import java.util.List;
 
 import javax.persistence.Entity;
 
