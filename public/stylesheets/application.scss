@@ -56,7 +56,8 @@ text-align: center;
 padding: 20px;
 background-color: #f7ffcc;
 border-radius: 7px;
-margin: 10px;
+margin: 20px auto;
+max-width: 800px;
 }
 
 .button, a.button, a.button:active, a.button:link, a.button:visited {
@@ -77,6 +78,14 @@ text-shadow: 0 -1px 1px black;
 
 .odd {
 background-color: #f7ffcc;
+}
+
+.right {
+text-align: right;
+}
+
+.left {
+text-align: left;
 }
 
 a.button:hover {
