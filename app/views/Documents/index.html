@@ -14,16 +14,14 @@
     <th class="actions center">Azioni</th>
   </tr>
 #{/}
-
-#{list documents}
-  <tr class="<%= cycle('odd', 'even')%>">
-    <td><%= link_to document.description, document.url %></td>
-	<td class="center"><%= link_to document.student, documents_path(student: document.student) %></td>
-	<td class="center"><%= document.created_at.strftime Date.today == document.created_at ? "%H:%M" : "%d %b" %></td>
+#{list documents, as:'doc'}
+  <tr class="${doc_parity}">
+    <td><a href="${doc.url}">${doc.title}</a></td>
+	<td class="center">${doc.student_pin}</td>
+	<td class="center">Timestamp</td>
     <td class="actions center">
-		<%= link_to 'Show', document, :class=>"button" %>
-		<%= link_to 'Edit', edit_document_path(document), class: "button" %>
-		<%= link_to 'Destroy', document, confirm: 'Are you sure?', method: :delete, :class=>"button" %>
+		#{a @Documents.edit(), class:"button"}Modifica#{/a}
+		#{a @Documents.delete(), class:"button"}Cancella#{/a}
 	</td>
   </tr>
 #{/}
