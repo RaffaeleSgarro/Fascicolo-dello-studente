@@ -12,10 +12,10 @@ public class BasicTest extends UnitTest {
     public void testDocument() throws MalformedURLException {
     	Document doc = new Document();
     	String google = "http://www.google.com";
-    	doc.url = new URL(google);
+    	doc.url = google;
     	doc.save();
     	
-    	doc = Document.find("byUrl", new URL(google)).first();
+    	doc = Document.find("byUrl", google).first();
     	//
     	assertNotNull(doc);
     	assertEquals(doc.url, new URL(google));
