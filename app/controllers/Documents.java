@@ -44,8 +44,6 @@ public class Documents extends Controller {
 	public static void create(@Valid Document document) {
 		if (validation.hasErrors()) {
 			response.status = 400;
-			for (play.data.validation.Error e : validation.errors())
-				System.out.println(e.getKey() + ": " + e.message());
 			renderJSON(validation.errors());
 		}
 		document.save();
