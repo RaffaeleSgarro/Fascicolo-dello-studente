@@ -1,12 +1,10 @@
 package controllers;
 
+import java.util.List;
+
 import models.Document;
 import play.data.validation.Valid;
 import play.mvc.Controller;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
 
 public class Documents extends Controller {
 
@@ -38,5 +36,19 @@ public class Documents extends Controller {
 		if (doc != null)
 			doc.delete();
 		redirect("Documents.index");
+	}
+	
+	/*
+	 * This is dedicated to service API
+	 */
+	public static void create(@Valid Document document) {
+		if (validation.hasErrors()) {
+			response.status = 400;
+			for (play.data.validation.Error e : validation.errors())
+				System.out.println(e.getKey() + ": " + e.message());
+			renderJSON(validation.errors());
+		}
+		document.save();
+		renderJSON(document);
 	}
 }
