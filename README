@@ -1,5 +1,67 @@
 Questo è il README del Fascicolo dello studente, una collezione di web
 services per gestire una mappa tra persone e documenti. Per comodità
-include anche un'interfaccia HTML. L'autenticazione avverrà tramite
-certificazione dei client
+include anche un'interfaccia HTML.
 
+TODO
+- Autenticazione
+- Altri webservices
+
+Esempio di client che documenta anche il webservice (richiede Apache Httpclient > 4.01):
+
+POST /documents
+document.url
+document.title
+document.studentPin
+
+package com.example;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+
+class Client {
+	public static void main(String... args) throws UnsupportedEncodingException {
+		String fascicolo = "http://localhost:9000/documents";
+		String url = "http://www.google.com";
+		String title = "Documento di prova inserito dal client";
+		String studentPin = "1000";
+		
+		HttpClient http = new DefaultHttpClient();
+		HttpPost post = new HttpPost(fascicolo);
+		
+		HttpEntity entity = post.getEntity();
+		List<NameValuePair> nvps = new LinkedList<NameValuePair>();
+		
+		nvps.add(new BasicNameValuePair("document.url", url));
+		nvps.add(new BasicNameValuePair("document.title", title));
+		nvps.add(new BasicNameValuePair("document.studentPin", studentPin));
+		
+		post.setEntity(new UrlEncodedFormEntity(nvps));
+		
+		try {
+			
+			HttpResponse response = http.execute(post);
+			entity = response.getEntity();
+			System.out.println(response.getStatusLine());
+			System.out.println(EntityUtils.toString(entity));
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		http.getConnectionManager().shutdown();
+	}
+}
